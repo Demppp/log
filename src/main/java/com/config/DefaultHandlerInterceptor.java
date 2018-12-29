@@ -33,10 +33,10 @@ public class DefaultHandlerInterceptor implements HandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
-		String cookie = req.getHeader("cookie");
-		String[] split = cookie.split("=");
-		String token = split.length>1?"":split[1];
-		List<UserInfo> list = userInfoRepository.getUserByToken(token);
+//		String cookie = req.getHeader("cookie");
+//		String[] split = cookie.split("=");
+//		String token = split.length>1?"":split[1];
+//		List<UserInfo> list = userInfoRepository.getUserByToken(token);
 		WebUtils.setRequest(req);
 		WebUtils.setResponse(res);
 		return true;
