@@ -37,9 +37,6 @@ public class DefaultHandlerInterceptor implements HandlerInterceptor {
 		String[] split = cookie.split("=");
 		String token = split.length>1?"":split[1];
 		List<UserInfo> list = userInfoRepository.getUserByToken(token);
-		if (list.size()<0) {
-			
-		}
 		WebUtils.setRequest(req);
 		WebUtils.setResponse(res);
 		return true;
