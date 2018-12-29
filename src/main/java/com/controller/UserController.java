@@ -1,5 +1,6 @@
 package com.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +41,12 @@ public class UserController {
 	}
 	
 	@RequestMapping("/getUserInfo")
-	public ResultDTO getUserInfo(){
-		if (StringUtils.isEmpty(SessionCookieUtil.getUser())) {
-			return ResultUtil.success(SessionCookieUtil.getUser());
+	public ResultDTO getUserInfo(HttpServletRequest req){
+		UserInfo userInfo = SessionCookieUtil.getUserInfoByToken();
+		if (!StringUtils.isEmpty(userInfo)) {
+			return ResultUtil.success(userInfo);
 		}else{
 			return ResultUtil.error(ResultEnum.UKNOW_ERROR);
 		}
-		
 	}
 }

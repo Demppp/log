@@ -17,6 +17,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 
+
+
+
 import com.entity.UserInfo;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -67,66 +70,7 @@ public class SessionCookieUtil {
 		response.addCookie(cookie);
 	}
 	
-	public static String getLoginName() {
-		Cookie cookie = getCookieByName("token");
-		if(cookie==null){
-			return null;
-		}else{
-			return cookie.getValue();
-		}		
-	}
-
-	/**
-	 * 得到记录id
-	 * 
-	 * @return
-	 */
-	public static int getUserId() {
-		return getUser().getId();
-	}
-
-	/**
-	 * 获取操作员
-	 * 
-	 * @return
-	 */
-	public static UserInfo getUser() {
-		UserInfo user = (UserInfo) session.getIfPresent(getLoginName());
-		return user;
-	}
-
-	/**
-	 * 是否登录
-	 * 
-	 * @return
-	 */
-	public static boolean isLogin() {
-		if(getLoginName()==null){
-			return false;
-		}
-		
-		if (session.getIfPresent(getLoginName()) == null) {
-			return false;
-		}
-		return true;
-	}
 	
-	public static boolean isLogin(String userName) {
-		if (session.getIfPresent(userName) == null) {
-			return false;
-		}
-		return true;
-	}
-
-	/**
-	 * 退出
-	 * 
-	 * @return
-	 */
-	public static void loginOut() {
-		if(StringUtils.isEmpty(getLoginName()))
-			delCookie(getLoginName());
-	}
 
 	/**
 	 * 获取ip地址
@@ -185,5 +129,13 @@ public class SessionCookieUtil {
 		} else {
 			return null;
 		}
+	}
+
+	public static UserInfo getUserInfoByToken() {
+		String cookie = WebUtils.getRequest().getHeader("cookie");
+		String[] split = cookie.split(";")[1].split("=");
+		String token = split.length>1?split[1]:"";
+		return (UserInfo)WebUtils.getRequest().getSession().getAttribute(token);
+		
 	}
 }

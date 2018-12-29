@@ -10,6 +10,10 @@
     <link href="https://cdn.bootcss.com/material-design-icons/3.0.1/iconfont/material-icons.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/materialize/0.97.8/css/materialize.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+     <!--弹出框-->
+    <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
 <!--加载meta IE兼容文件-->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -143,6 +147,7 @@
 
 
     $(function(){
+        $(".button-collapse").sideNav();
         $("#personal_center").click(function(){         
            //侧边导航条
           $("#button-collapse").sideNav();

@@ -34,8 +34,7 @@ public class UserServiceImpl implements UserService{
 			user.setStartTime(CommonUtil.getCurrentTime());
 			user.setEndTime(CommonUtil.getDayAfterToday(1));
 			userInfoRepository.saveAndFlush(user);
-			SessionCookieUtil.setUser(username, user);
-			SessionCookieUtil.addCookieOneDay(CommonUtil.getUUID());
+			SessionCookieUtil.addCookieOneDay(token);
 			return list.get(0);
 		}else{
 			return null;

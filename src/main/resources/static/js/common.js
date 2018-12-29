@@ -22,9 +22,18 @@ var common = {
 		{},
 		function(result){
 			if (result && result.code=="0") {
-				$("#userNickName").html(result.username);
+				$("#userNickName").html(result.data.username);
 			}else{
-				sweetAlert("ERROR", result.message, "error");
+				sweetAlert({
+                                title: "发生未知错误！",
+                                text: "1秒后跳转到首页！",
+                                timer: 1000,
+                                type: "error",
+                                showConfirmButton: false
+                            });
+					setTimeout(function () {
+                                window.location.href = path+login.URL.indexPath();
+                            }, 1000);
 			}
 		})
 	},
