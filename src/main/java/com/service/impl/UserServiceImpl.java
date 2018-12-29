@@ -24,7 +24,8 @@ public class UserServiceImpl implements UserService{
 	UserInfoRepository userInfoRepository;
 	
 	@Override
-	public ResultDTO login(String username, String password) {
+	@Transactional
+	public UserInfo login(String username, String password) {
 		List<UserInfo> list = userInfoRepository.login(username,password);
 		if (list.size()>0) {
 			UserInfo user = list.get(0);
@@ -32,18 +33,18 @@ public class UserServiceImpl implements UserService{
 			user.setToken(token);
 			user.setStartTime(CommonUtil.getCurrentTime());
 			user.setEndTime(CommonUtil.getDayAfterToday(1));
-			SessionCookieUtil.setUser(username, list.get(0));
+			userInfoRepository.saveAndFlush(user);
+			SessionCookieUtil.setUser(username, user);
 			SessionCookieUtil.addCookieOneDay(CommonUtil.getUUID());
-			return ResultUtil.success(list.get(0));
+			return list.get(0);
 		}else{
-			return ResultUtil.error(ResultEnum.USERINFO_ERROR);
+			return null;
 		}
 	}
 
 	@Override
 	@Transactional
 	public ResultDTO addUser(UserInfo user) {
-		
 		//检查username是否唯一
 		List<UserInfo> list = userInfoRepository.getUserByUsername(user.getUsername());
 		if (list.size()>0) {

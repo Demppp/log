@@ -31,6 +31,8 @@ var login = {
                                 window.location.href = path+login.URL.indexPath();
                             }, 1000);
 					// window.location.href = path+login.URL.indexPath();
+				}else{
+					sweetAlert("登录失败", result.message, "error");
 				}
 			})
 		})

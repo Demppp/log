@@ -68,7 +68,7 @@ public class SessionCookieUtil {
 	}
 	
 	public static String getLoginName() {
-		Cookie cookie = getCookieByName("moni_userName");
+		Cookie cookie = getCookieByName("token");
 		if(cookie==null){
 			return null;
 		}else{
