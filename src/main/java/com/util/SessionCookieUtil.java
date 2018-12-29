@@ -133,6 +133,9 @@ public class SessionCookieUtil {
 
 	public static UserInfo getUserInfoByToken() {
 		String cookie = WebUtils.getRequest().getHeader("cookie");
+		if (StringUtils.isEmpty(cookie)) {
+			return null;
+		}
 		String[] split = cookie.split(";")[1].split("=");
 		String token = split.length>1?split[1]:"";
 		return (UserInfo)WebUtils.getRequest().getSession().getAttribute(token);

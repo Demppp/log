@@ -1,11 +1,7 @@
 var path = window.location.origin;
 
 var login = {
-	URL:{	
-		indexPath : function(){
-			return "/html/index.html"
-		}
-	},
+	
 
 	login:function(){
 		$("#loginBtn").click(function(){
@@ -28,7 +24,7 @@ var login = {
                                 showConfirmButton: false
                             });
 					setTimeout(function () {
-                                window.location.href = path+login.URL.indexPath();
+                                window.location.href = path+common.URL.indexPath();
                             }, 1000);
 					// window.location.href = path+login.URL.indexPath();
 				}else{

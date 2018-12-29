@@ -32,7 +32,7 @@ var common = {
                                 showConfirmButton: false
                             });
 					setTimeout(function () {
-                                window.location.href = path+login.URL.indexPath();
+                                window.location.href = path+common.URL.loginPath();
                             }, 1000);
 			}
 		})
