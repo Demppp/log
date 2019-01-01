@@ -37,7 +37,7 @@ var regist = {
 			},function(result){
 				if(result && result.code=="0"){
 					sweetAlert({
-                                title: "登陆成功！",
+                                title: "注册成功！",
                                 text: "1秒后跳转到登录页面！",
                                 timer: 1000,
                                 type: "success",
