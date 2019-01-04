@@ -1,11 +1,11 @@
 package com.service.impl;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.dto.ResultDTO;
 import com.dto.ResultEnum;
@@ -51,6 +51,24 @@ public class UserServiceImpl implements UserService{
 		}
 		userInfoRepository.save(user);
 		return ResultUtil.success();
+	}
+
+	@Override
+	public ResultDTO checkUsername(String username) {
+		int size = userInfoRepository.getUserByUsername(username).size();
+		return size>0?ResultUtil.error(ResultEnum.INFO_DOUBLE):ResultUtil.success();
+	}
+
+	@Override
+	@Transactional
+	public ResultDTO updateUserInfo(String imgPath, String username) {
+		UserInfo info = SessionCookieUtil.getUserInfoByToken();
+		if (!StringUtils.isEmpty(username)) {
+			info.setUsername(username);
+		}
+		info.setImgPath(imgPath);
+		userInfoRepository.saveAndFlush(info);
+		return ResultUtil.success(info);
 	}
 
 }

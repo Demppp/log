@@ -1,12 +1,19 @@
 var index = {
 
-	
+	index:function(){
 
-	index : function(){
-		//侧边导航条
-        $("#button-collapse").sideNav();
+		// common.no_login();
 
-        //获取用户信息
-		common.getUserInfo();
+		// //侧边导航条
+  //       $("#button-collapse").sideNav();
+
+  //       //获取用户信息
+		// common.getUserInfo();
+
+		// //退出按钮
+		// $("#logout").click(function(){
+  //           common.logout();
+  //       });
+  		common.index();
 	}
 }

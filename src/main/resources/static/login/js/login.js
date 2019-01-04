@@ -1,4 +1,4 @@
-var path = window.location.origin;
+var path = common.path;
 
 var login = {
 	
@@ -22,10 +22,10 @@ var login = {
                                 timer: 1000,
                                 type: "success",
                                 showConfirmButton: false
-                            });
+                              });
 					setTimeout(function () {
                                 window.location.href = path+common.URL.indexPath();
-                            }, 1000);
+                              }, 1000);
 					// window.location.href = path+login.URL.indexPath();
 				}else{
 					sweetAlert("登录失败", result.message, "error");
@@ -37,6 +37,13 @@ var login = {
 	
 	init:function(){
 		login.login();
+
+		//回车键登录
+		$(document).keyup(function(event){
+		  if(event.keyCode ==13){
+		    $("#loginBtn").trigger("click");
+		  }
+		});
 	}
 
 

@@ -21,6 +21,7 @@ public class UserInfo {
 	private String token;
 	private Timestamp startTime;
 	private Timestamp endTime;
+	private String imgPath;
 
 	
 	@Id
@@ -88,5 +89,14 @@ public class UserInfo {
 	public void setEndTime(Timestamp endTime) {
 		this.endTime = endTime;
 	}
+	@Basic
+	@Column(name = "img_path")
+	public String getImgPath() {
+		return imgPath;
+	}
+	public void setImgPath(String imgPath) {
+		this.imgPath = imgPath;
+	}
+	
 	
 }

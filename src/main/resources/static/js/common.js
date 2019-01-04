@@ -13,6 +13,7 @@ var common = {
 		loginPath : function(){
 			return "/login/login.html"
 		}
+
 	},
 
 
@@ -22,6 +23,7 @@ var common = {
 		{},
 		function(result){
 			if (result && result.code=="0") {
+				$("#slide-out-headPortrait").attr("src", path+"/img/url/?imgPath="+result.data.imgPath);			
 				$("#userNickName").html(result.data.username);
 			}else{
 				sweetAlert({
@@ -37,4 +39,43 @@ var common = {
 			}
 		})
 	},
+
+	logout : function(){
+		$.post(path+"/user/logout",
+		{},
+		function(result){
+			if (result && result.code == 0) {  //退出到登录页面
+				 window.location.href = path + common.URL.loginPath();
+			}else{
+				sweetAlert("退出失败", result.message, "error");
+			}
+		})
+	},
+
+	no_login : function(){
+		$.post(path+"/user/no_login"
+			,{
+
+			},function(){
+
+			});
+	},
+
+
+	index:function(){
+		common.no_login();
+
+		//侧边导航条
+        $("#button-collapse").sideNav();
+
+        //获取用户信息
+		common.getUserInfo();
+
+		//退出按钮
+		$("#logout").click(function(){
+            common.logout();
+        });
+
+	}
+
 }	

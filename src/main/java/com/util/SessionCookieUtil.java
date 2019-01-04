@@ -141,4 +141,13 @@ public class SessionCookieUtil {
 		return (UserInfo)WebUtils.getRequest().getSession().getAttribute(token);
 		
 	}
+	
+	public static String getToken(){
+		String cookie = WebUtils.getRequest().getHeader("cookie");
+		if (StringUtils.isEmpty(cookie)) {
+			return null;
+		}
+		String[] split = cookie.split(";")[1].split("=");
+		return split.length>1?split[1]:"";
+	}
 }
