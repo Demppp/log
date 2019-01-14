@@ -2,6 +2,11 @@ var path = common.path;
 
 var login = {
 	
+	URL : {
+		login : function(){
+			return "/user/login";
+		}
+	},
 
 	login:function(){
 		$("#loginBtn").click(function(){
@@ -13,7 +18,7 @@ var login = {
 			// 		sweetAlert("登录失败", "请输入用户名!", "error");
 			// 		return;
 			// }
-			$.post(path+"/user/login",{
+			$.post(path+login.URL.login(),{
 				username : username,
 				password : password
 			},function(result){

@@ -2,10 +2,16 @@ var path = common.path;
 
 var personalInfo = {
 
+    URL : function(){
+        uploadImage : function(){
+            return "/img/uploadImage";
+        },
+    },
+
 	uploadImage : function(){
 		var opt = {
             //重新指定form的action的值
-            url: path+"/img/uploadImage",
+            url: path+personalInfo.URL.uploadImage(),
             type: "post",
             dateType: "json",
             data: {

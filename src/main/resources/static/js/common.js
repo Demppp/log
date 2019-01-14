@@ -7,11 +7,14 @@ $(function(){
 var common = {
 	URL : {
 		indexPath : function(){
-			return "/html/index.html" 
+			return "/index/index.html" 
 		},
 
 		loginPath : function(){
-			return "/login/login.html"
+			return "/login/html/login.html"
+		},
+		getUserInfo : function(){
+			return "/user/getUserInfo";
 		}
 
 	},
@@ -19,11 +22,11 @@ var common = {
 
 
 	getUserInfo : function(){
-		$.post(path+"/user/getUserInfo",
+		$.post(path+common.URL.getUserInfo(),
 		{},
 		function(result){
 			if (result && result.code=="0") {
-				if(result.data.imgPath!=""){
+				if(result.data.imgPath==""){
 					$("#slide-out-headPortrait").attr("src","/imgs/headPortrait.png");
 				}else{
 					$("#slide-out-headPortrait").attr("src", path+"/img/url/?imgPath="+result.data.imgPath);

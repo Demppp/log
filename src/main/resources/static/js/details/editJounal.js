@@ -3,6 +3,17 @@ var acceptTags = new Array();
 var path = common.path;
 var editJounal = {
 
+
+    URL : {
+        uploadjournalImage : function(){
+            return '/img/uploadjournalImage';
+        },
+        saveJounal : function(){
+            return "/jounal/saveJounal";
+        }
+    },
+
+
 	 //标签相关操作
     tagOpera: function (params) {
         if (params && params != "") {
@@ -46,7 +57,7 @@ var editJounal = {
         //文本编辑器
         var E = window.wangEditor
         var editor = new E('#editor')
-        editor.customConfig.uploadImgServer = path + '/img/uploadjournalImage';  // 上传图片到服务器接口
+        editor.customConfig.uploadImgServer = path +  editJounal.URL.uploadjournalImage() ;  // 上传图片到服务器接口
         editor.customConfig.uploadFileName = 'imgsFile'; // 参数名称
         editor.customConfig.uploadImgShowBase64 = true
         editor.customConfig.uploadImgParams = {		    
@@ -84,7 +95,7 @@ var editJounal = {
 		var title = $("#title").val();
         var tags = $("#tag_1 input").val();
 		
-		$.post(path+"/jounal/saveJounal",{
+		$.post(path+editJounal.URL.saveJounal(),{
 				title: title,
 				tags : tags,
 				textWithHtml : textWithHtml,

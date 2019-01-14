@@ -14,7 +14,7 @@ public class DefaultView extends WebMvcConfigurerAdapter {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry){
 		if (StringUtil.isEmpty(SessionCookieUtil.getUserInfoByToken())) {
-			registry.addViewController("/").setViewName("forward:/login/login.html");
+			registry.addViewController("/").setViewName("forward:/login/html/login.html");
 			registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 			super.addViewControllers(registry);
 		}else{

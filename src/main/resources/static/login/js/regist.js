@@ -3,6 +3,12 @@ var loginPath = common.URL.loginPath();
 
 var regist = {
 
+	URL : {
+		regist : function(){
+			return "/user/regist";
+		}
+	},
+
 	vail_username : function(username){
 		return true;
 	},
@@ -19,6 +25,7 @@ var regist = {
 		return true;
 	},
 
+
 	regist : function(){
 		$("#regist").click(function(){
 			var username = $("#username").val();
@@ -29,7 +36,7 @@ var regist = {
 			var phone = $("#phone").val();
 			var email = $("#email").val();
 
-			$.post(path+"/user/regist",{
+			$.post(path+regist.URL.regist(),{
 				username : username,
 				password : password,
 				phone : phone,
