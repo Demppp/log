@@ -14,6 +14,10 @@ var index = {
 		// $("#logout").click(function(){
   //           common.logout();
   //       });
+
+
+  		//侧边导航条
+        $("#button-collapse").sideNav();
   		common.index();
 	}
 }

@@ -20,6 +20,7 @@ import org.springframework.util.StringUtils;
 
 
 
+
 import com.entity.UserInfo;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
@@ -131,7 +132,10 @@ public class SessionCookieUtil {
 		}
 	}
 
-	public static UserInfo getUserInfoByToken() {
+	public static UserInfo getUserInfoByToken(){
+		if(StringUtil.isEmpty(WebUtils.getRequest())){
+			return null;
+		}
 		String cookie = WebUtils.getRequest().getHeader("cookie");
 		if (StringUtils.isEmpty(cookie)) {
 			return null;

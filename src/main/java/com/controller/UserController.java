@@ -29,6 +29,7 @@ public class UserController {
 	public ResultDTO no_login(HttpSession session){
 		UserInfo userInfo = userService.login("1", "1");
 		session.setAttribute(userInfo.getToken(), userInfo);
+		SessionCookieUtil.addCookieOneDay(userInfo.getToken());
 		return ResultUtil.success();
 	}
 	

@@ -7,7 +7,7 @@ $(function(){
 var common = {
 	URL : {
 		indexPath : function(){
-			return "/html/index.html"
+			return "/html/index.html" 
 		},
 
 		loginPath : function(){
@@ -23,7 +23,12 @@ var common = {
 		{},
 		function(result){
 			if (result && result.code=="0") {
-				$("#slide-out-headPortrait").attr("src", path+"/img/url/?imgPath="+result.data.imgPath);			
+				if(result.data.imgPath!=""){
+					$("#slide-out-headPortrait").attr("src","/imgs/headPortrait.png");
+				}else{
+					$("#slide-out-headPortrait").attr("src", path+"/img/url/?imgPath="+result.data.imgPath);
+				}
+				
 				$("#userNickName").html(result.data.username);
 			}else{
 				sweetAlert({
@@ -63,10 +68,7 @@ var common = {
 
 
 	index:function(){
-		common.no_login();
-
-		//侧边导航条
-        $("#button-collapse").sideNav();
+		// common.no_login();
 
         //获取用户信息
 		common.getUserInfo();

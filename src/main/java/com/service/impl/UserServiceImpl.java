@@ -67,6 +67,7 @@ public class UserServiceImpl implements UserService{
 			info.setUsername(username);
 		}
 		info.setImgPath(imgPath);
+		System.out.println("update--");
 		userInfoRepository.saveAndFlush(info);
 		return ResultUtil.success(info);
 	}
