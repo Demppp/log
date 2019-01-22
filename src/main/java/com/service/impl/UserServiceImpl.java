@@ -12,7 +12,7 @@ import com.dto.ResultEnum;
 import com.entity.UserInfo;
 import com.repository.UserInfoRepository;
 import com.service.UserService;
-import com.util.CommonUtil;
+import com.util.DateUtil;
 import com.util.ResultUtil;
 import com.util.SessionCookieUtil;
 
@@ -29,10 +29,10 @@ public class UserServiceImpl implements UserService{
 		List<UserInfo> list = userInfoRepository.login(username,password);
 		if (list.size()>0) {
 			UserInfo user = list.get(0);
-			String token = CommonUtil.getUUID();
+			String token = DateUtil.getUUID();
 			user.setToken(token);
-			user.setStartTime(CommonUtil.getCurrentTime());
-			user.setEndTime(CommonUtil.getDayAfterToday(1));
+			user.setStartTime(DateUtil.getCurrentTime());
+			user.setEndTime(DateUtil.getDayAfterToday(1));
 			userInfoRepository.saveAndFlush(user);
 			SessionCookieUtil.addCookieOneDay(token);
 			return list.get(0);

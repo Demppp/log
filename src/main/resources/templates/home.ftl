@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
-<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
-<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
 
     <!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8">
-	<title>Vintauge</title>
+	<title>${title}</title>
 	<meta name="description" content="Free Responsive Html5 Css3 Templates ">
 	<meta name="author" content="#">
 	
@@ -18,16 +15,16 @@
     
     <!-- CSS
 	================================================== -->
-  	<link rel="stylesheet" href="css/zerogrid.css">
-	<link rel="stylesheet" href="css/style.css">
+  	<link rel="stylesheet" href="${request.contextPath}/index/css/zerogrid.css">
+	<link rel="stylesheet" href="${request.contextPath}/index/css/style.css">
 	
 	<!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="${request.contextPath}/index/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	
 	
-	<link rel="stylesheet" href="css/menu.css">
-	<script src="js/jquery1111.min.js" type="text/javascript"></script>
-	<script src="js/script.js"></script>
+	<link rel="stylesheet" href="${request.contextPath}/index/css/menu.css">
+	<script src="${request.contextPath}/index/js/jquery1111.min.js" type="text/javascript"></script>
+	<script src="${request.contextPath}/index/js/script.js"></script>
 	
 	<!-- Owl Carousel Assets -->
     <link href="owl-carousel/owl.carousel.css" rel="stylesheet">
@@ -52,25 +49,20 @@
 	<div class="wrap-body">
 		<div id='cssmenu' class="align-center">
 			<ul>
-			   <li class="active"><a href='/index/index.html'><span>Home</span></a></li>
-
+			   <li class="active"><a href='${request.contextPath}/index/index.html'><span>Home</span></a></li>
 			   <li class=' has-sub'><a href='#'><span>Blog</span></a>
-				  <ul >
-					 <li class='has-sub'><a href='#'><span>Item 1</span></a>
-						<ul>
-						   <li><a href='#'><span>Sub Item</span></a></li>
-						   <li class='last'><a href='#'><span>Sub Item</span></a></li>
-						</ul>
-					 </li>
-					 <li class='has-sub'><a href='#'><span>Item 2</span></a>
-						<ul>
-						   <li><a href='#'><span>Sub Item</span></a></li>
-						   <li class='last'><a href='#'><span>Sub Item</span></a></li>
-						</ul>
-					 </li>
-				  </ul>
-			   </li>
-			   
+			   	  <ul id="head_blog_ul">
+				   	  <#list BLogDetailsList as blog>				   	  	
+				   	  	  <li class='last'>
+				   	  	  	<a href='${request.contextPath}/blog/showBlogDetails/${blog.id}'>
+				   	  	  		<span>
+				   	  	  			<p value="${blog.id}">${blog.title}</p>
+				   	  	  		</span>
+				   	  	  	</a>
+				   	  	  </li>				   	  	
+				   	  </#list>
+			   	  </ul>
+			   </li>			
 			   <li><a href='/index/single.html'><span>About</span></a></li>
 			   <li class='last' id="personal_center">
 			   		<a href='#' id="button-collapse" data-activates="slide-out"><span>Setting</span></a>
@@ -146,7 +138,6 @@
 									</article>
 								</div>
 							</div>
-                            <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
 							<div class="row">
 								<div class="col-1-2">
 									<article>
@@ -236,28 +227,6 @@
 				</div>
 			</div>
 		</section>
-		<!--  
-		<footer>
-			<div class="zerogrid wrap-footer">
-				<div class="row">
-					<div class="bottom-social">
-						<a href="#"><i class="fa fa-facebook"></i></a>
-						<a href="#"><i class="fa fa-instagram"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>
-						<a href="#"><i class="fa fa-google-plus"></i></a>
-						<a href="#"><i class="fa fa-pinterest"></i></a>
-						<a href="#"><i class="fa fa-vimeo"></i></a>
-						<a href="#"><i class="fa fa-linkedin"></i></a>
-						<a href="#"><i class="fa fa-youtube"></i></a>
-					</div>
-				</div>
-				<div class="copyright">
-					Copyright @ - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-				</div>
-			</div>
-		</footer>
-		 -->
-
 <!--侧边导航条-->
 <ul id="slide-out" class="side-nav">
     <li>

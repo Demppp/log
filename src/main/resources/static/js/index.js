@@ -1,4 +1,18 @@
+var path = common.path;
 var index = {
+
+	URL : {
+		to_blogDetails : function(){
+			return "/blog/showBlogDetails";
+		}
+	},
+
+	to_blogDetails:function(){
+		var id = $(this).find("p").eq(0).val();
+		var blog_id = $("#blog_p").val();
+		var url = path+index.URL.to_blogDetails()+"/"+blog_id;
+		window.open(url);
+	},
 
 	index:function(){
 
@@ -19,5 +33,10 @@ var index = {
   		//侧边导航条
         $("#button-collapse").sideNav();
   		common.index();
+
+  		//跳转blog页面
+  		// $("ul li").click(function(){
+  		// 	index.to_blogDetails();
+  		// })
 	}
 }

@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dto.ImgResultDTO;
 import com.dto.ResultDTO;
 import com.dto.ResultEnum;
-import com.util.CommonUtil;
+import com.util.DateUtil;
 import com.util.ResultUtil;
 import com.util.StringUtil;
 
@@ -58,7 +58,7 @@ public class ImgController {
 						fileUrl.mkdir();
 					}
 					// 自定义的文件名称
-					String trueFileName = CommonUtil.getUUID() + "." + type;
+					String trueFileName = DateUtil.getUUID() + "." + type;
 					// 设置存放图片文件的路径
 					String path = realPath + "/" + trueFileName;
 					// 转存文件到指定的路径
@@ -116,7 +116,7 @@ public class ImgController {
 						fileUrl.mkdir();
 					}
 					// 自定义的文件名称
-					String trueFileName = CommonUtil.getUUID() + "." + type;
+					String trueFileName = DateUtil.getUUID() + "." + type;
 					// 设置存放图片文件的路径
 					String path = realPath + "/" + trueFileName;
 					// 转存文件到指定的路径

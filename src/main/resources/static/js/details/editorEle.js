@@ -1,17 +1,10 @@
-//接收后台带过来的数组
 var acceptTags = new Array();
 var path = common.path;
-var editJounal = {
+var imgType;
+var editor;
+var editorEle = {
 
-
-    URL : {
-        saveJounal : function(){
-            return "/jounal/saveJounal";
-        }
-    },
-
-
-	 //标签相关操作
+	//标签相关操作
     tagOpera: function (params) {
         if (params && params != "") {
             //去除最后一个逗号，并按照逗号进行分割成字符数组
@@ -42,23 +35,24 @@ var editJounal = {
                 }
             }
         });
-
     },
 
-
-    //标签和文本编辑器
+      //标签和文本编辑器
     tag_text:function(params){
     	 //标签的相关操作(增加、删除、获取值)
-        editJounal.tagOpera(params);
+        editorEle.tagOpera(params);
+
+
+        var type = editorEle.getImgType();
 
         //文本编辑器
         var E = window.wangEditor
-        var editor = new E('#editor')
+        editor = new E('#editor')
         editor.customConfig.uploadImgServer = path +  common.URL.uploadjournalImage() ;  // 上传图片到服务器接口
         editor.customConfig.uploadFileName = 'imgsFile'; // 参数名称
         editor.customConfig.uploadImgShowBase64 = true
         editor.customConfig.uploadImgParams = {		    
-		    imgType: 'jounalImg' 
+		    imgType: type
 		}
 
 		editor.customConfig.uploadImgHooks = {
@@ -70,48 +64,32 @@ var editJounal = {
 		}
         //...文件上传如果用到其他参数再去看文档。http://www.wangeditor.com/index.html
         editor.create();
-
-        $("#submitButton").click(function(){
-        	var textWithHtml = editor.txt.html();
-			var text = editor.txt.text();
-			editJounal.saveJounal(textWithHtml,text);
-		})
-
     },
-	
-	
 
-	saveJounal:function(textWithHtml,text){
-		var title = $("#title").val();
-        var tags = $("#tag_1 input").val();
-		
-		$.post(path+editJounal.URL.saveJounal(),{
-				title: title,
-				tags : tags,
-				textWithHtml : textWithHtml,
-				text : text
-			},function(result){
-				if(result.code=="0"){
-					swal({title:"发布成功！",
-				        text:"",
-				        type:"success"},
-                        function(){
-                            window.location.href = path+common.URL.editJournalPath();
-                        }
-				    )				
-				}else{
-					sweetAlert("发布失败", result.message, "error");
-				}
-			});
-	},
+    setImgType:function(data){
+        imgType = data;
+    },
 
-    index:function(params){
-        //侧边导航条
+    getImgType:function(){
+        return imgType;
+    },
+
+ 	getEditorData:function(){
+
+        var textWithHtml = editor.txt.html();
+		var text = editor.txt.text();
+		var editorData = new Array();
+        editorData.push(textWithHtml);
+        editorData.push(text);
+
+       	return editorData;
+    },
+
+	index:function(){
+		//侧边导航条
         $("#button-collapse").sideNav();
-        common.index();
+		common.index();
+		editorEle.tag_text();
 
-        editJounal.tag_text();  
-       
-    }
-
+	}
 }

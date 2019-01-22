@@ -33,7 +33,7 @@ var login = {
 					// setTimeout(function () {
      //                            window.location.href = path+common.URL.indexPath();
      //                          }, 1000);
-					window.location.href = path+common.URL.indexPath();
+					common.toIndex();
 				}else{
 					sweetAlert("登录失败", result.message, "error");
 				}
@@ -41,10 +41,8 @@ var login = {
 		})
 	},
 
-	
 	init:function(){
 		login.login();
-
 		//回车键登录
 		$(document).keyup(function(event){
 		  if(event.keyCode ==13){

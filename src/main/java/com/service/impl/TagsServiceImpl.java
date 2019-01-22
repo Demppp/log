@@ -12,7 +12,7 @@ import com.repository.TagsRepository;
 import com.service.TagsService;
 
 @Service
-@Transactional
+@Transactional(readOnly=true)
 public class TagsServiceImpl implements TagsService{
 
 	@Autowired

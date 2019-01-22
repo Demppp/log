@@ -6,20 +6,36 @@ $(function(){
 
 var common = {
 	URL : {
+		toIndex : function(){
+			return "/index/toIndex";
+		},
 		indexPath : function(){
 			return "/index/index.html" 
 		},
-
 		loginPath : function(){
 			return "/login/html/login.html"
 		},
 		getUserInfo : function(){
 			return "/user/getUserInfo";
-		}
+		},
+		uploadImage : function(){
+            return "/img/uploadImage";
+        },
+        uploadjournalImage : function(){
+            return '/img/uploadjournalImage';
+        },
+        editJournalPath : function(){
+        	return "/html/details/editJournal.html";
+        },
+        editBlogPath : function(){
+        	return "/html/details/editBlog.html";
+        }
 
 	},
 
-
+	toIndex : function(){
+		window.location.href = path+common.URL.toIndex();
+	},
 
 	getUserInfo : function(){
 		$.post(path+common.URL.getUserInfo(),

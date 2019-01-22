@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
-public class CommonUtil {
+public class DateUtil {
 	private static SimpleDateFormat sdf = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
 

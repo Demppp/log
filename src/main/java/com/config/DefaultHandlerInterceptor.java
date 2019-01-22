@@ -18,7 +18,7 @@ import com.util.WebUtils;
 
 public class DefaultHandlerInterceptor implements HandlerInterceptor {
 	
-	private static final String LOGIN_URL = "/html/index.html";
+//	private static final String LOGIN_URL = "/html/index.html";
 	
 	@Autowired
 	UserInfoRepository userInfoRepository;

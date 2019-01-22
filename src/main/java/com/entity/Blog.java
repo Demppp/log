@@ -9,15 +9,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="article",schema="public",catalog="log")
-public class Article {
+@Table(name="blog",schema="public",catalog="log")
+public class Blog {
 	private String id;
 	private String title;
 	private String type;
 	private String text;
 	private String textWithHtml;
 	private Timestamp createTime;
-	private String userId;
+	private int userId;
 	private String author;
 	private String cover;
 	@Id
@@ -70,10 +70,10 @@ public class Article {
 	}
 	@Basic
 	@Column(name="user_id")
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	@Basic
